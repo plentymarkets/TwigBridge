@@ -50,8 +50,8 @@ class Translator extends Twig_Extension
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('trans', [$this->translator, 'trans']),
-            new Twig_SimpleFunction('trans_choice', [$this->translator, 'transChoice']),
+            new Twig_SimpleFunction('trans', [$this->translator, 'get']),
+            new Twig_SimpleFunction('trans_choice', [$this->translator, 'choice']),
         ];
     }
 
@@ -63,7 +63,7 @@ class Translator extends Twig_Extension
         return [
             new Twig_SimpleFilter(
                 'trans',
-                [$this->translator, 'trans'],
+                [$this->translator, 'get'],
                 [
                     'pre_escape' => 'html',
                     'is_safe'    => ['html'],
@@ -71,7 +71,7 @@ class Translator extends Twig_Extension
             ),
             new Twig_SimpleFilter(
                 'trans_choice',
-                [$this->translator, 'transChoice'],
+                [$this->translator, 'choice'],
                 [
                     'pre_escape' => 'html',
                     'is_safe'    => ['html'],
